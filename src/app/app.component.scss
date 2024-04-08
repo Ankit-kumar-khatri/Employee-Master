@@ -1,0 +1,19 @@
+.card-header-color {
+  background-color: brown;
+  color: white;
+}
+
+.inputCls {
+  padding: 10px;
+  input {
+    border: 1px solid black;
+    height: 33px;
+    background: #dee2e6;
+    border-radius: 5px;
+
+    &:focus,
+    :focus-visible {
+      outline: none;
+    }
+  }
+}

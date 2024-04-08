@@ -1,0 +1,96 @@
+<div class="card m-4">
+  <h5 class="card-header card-header-color">{{ title }}</h5>
+  <div class="card-body">
+    <ul ngbNav #nav="ngbNav" class="nav-tabs" (navChange)="tabChange()">
+      <li ngbNavItem="firstTab">
+        <a ngbNavLink>Add Employee</a>
+        <ng-template ngbNavContent>
+          <form [formGroup]="addForm" (ngSubmit)="register()" class="mt-4">
+            <div class="row mb-3">
+              <div class="form-group col-6">
+                <label>Employee Code</label>
+                <input type="number" class="form-control" formControlName="id" />
+              </div>
+              <div class="form-group col-6">
+                <label>Employee Name</label>
+                <input type="text" class="form-control" formControlName="empname" />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="form-group col-6">
+                <label>Address 1</label>
+                <input type="text" class="form-control" formControlName="address" />
+              </div>
+              <div class="form-group col-6">
+                <label>Mobile No.</label>
+                <input type="number" class="form-control" formControlName="mobile" />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="form-group col-6">
+                <label>Date of Birth</label>
+                <input type="date" class="form-control" formControlName="dob" />
+              </div>
+              <div class="form-group col-6">
+                <label>Remarks</label>
+                <input type="text" class="form-control" formControlName="remarks" />
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-success me-3" [disabled]="addForm.invalid">
+                  {{ buttonText }}
+                </button>
+                <button type="button" class="btn btn-danger" (click)="restForm()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+      </li>
+      <li ngbNavItem="secondTab">
+        <a ngbNavLink>Employee List</a>
+        <ng-template ngbNavContent>
+          <div class="form-row mt-4">
+            <div class="form-group col">
+              <table class="table table-bordered">
+                <tr>
+                  <td colspan="7" class="inputCls">
+                    <input type="text" placeholder="Search Employee" #filter (input)="filterEmployee(filter.value)">
+                  </td>
+                </tr>
+                <tr>
+                  <th>Employee Code</th>
+                  <th>Employee Name</th>
+                  <th>Address</th>
+                  <th>Mobile No.</th>
+                  <th>DOB</th>
+                  <th>Remarks</th>
+                  <th>Actions</th>
+                </tr>
+                <tr *ngFor="let item of userList">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.empname }}</td>
+                  <td>{{ item.address }}</td>
+                  <td>{{ item.mobile }}</td>
+                  <td>{{ item.dob }}</td>
+                  <td>{{ item.remarks }}</td>
+                  <td>
+                    <i class="fa fa-edit" (click)="edit(item.id)" style="color: green"></i>
+                    <i class="fa fa-trash-o" (click)="del(item.id)" style="color: red"></i>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </div>
+</div>
