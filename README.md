@@ -1,6 +1,10 @@
-# AngularCRUDWithTAB
+# EmployeeMaster
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.11.
+
+## Project start
+
+Run `npm install` to install all the dependent libraries and packages before serving/starting the project.
 
 ## Development server
 
